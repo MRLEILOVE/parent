@@ -15,15 +15,15 @@
     <modules>
         <module>springboot-core</module>
         <module>springboot-db</module>
+        <module>springboot-poi</module>
     </modules>
 
     <!-- parent指明继承关系，给出被继承的父项目的具体信息-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.0.RELEASE</version>
+        <version>2.0.4.RELEASE</version>
         <relativePath/>
-        <!-- lookup parent from repository -->
     </parent>
 
 
@@ -31,27 +31,48 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
         <!-- 在properties中统一控制依赖包的版本，更清晰-->
+        <easypoi.version>3.3.0</easypoi.version>
 
     </properties>
 
+    <!--父项目集成一些一般项目都必须要的包-->
     <dependencies>
+        <!--spring-boot-starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
+        <!--spring-boot-starter-test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
+        <!--devtools-->
+        <!-- Spring boot 热部署 : 此热部署会遇到 java.lang.ClassCastException 异常 -->
+        <!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!--mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
